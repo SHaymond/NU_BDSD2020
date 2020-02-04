@@ -8,7 +8,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
-library(kableExtra)
 
 ```
 
@@ -20,10 +19,11 @@ my_data <- read_csv(file = "data/NHANES_FeMarkers_3to5y.csv")
 ```
 
 *Table 1. Summary Statistics*
-```{r table}
-knitr::kable(summary(my_data)) %>%
-        kable_styling()
+```{r table, results='asis'}
+knitr::kable(summary(my_data), format = "markdown", escape=FALSE)
 ```
+
+
 There are `r nrow(my_data)` observations in this dataset. The mean age is `r round(mean(my_data$Age_months),0)` months. 
 
 *Figure 1. Transferrin vs Iron*  
